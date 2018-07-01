@@ -997,8 +997,11 @@ input[type=radio] {
 input[type=checkbox] {
   border-radius: 3px;
   margin-right: 5px; }
+  input[type=checkbox]:checked {
+    background: url("../img/check.png") no-repeat center center;
+    background-size: 90%; }
   input[type=checkbox]:checked:before, input[type=checkbox]:indeterminate:before {
-    content: "\2714";
+    content: "";
     font-size: 12px;
     -webkit-font-smoothing: antialiased;
     text-align: center;
@@ -1485,6 +1488,22 @@ section {
     font-size: 1.5em;
     line-height: 1.4; }
 
+@-webkit-keyframes pulsate {
+  0% {
+    opacity: 0.5; }
+  50% {
+    opacity: 0.8; }
+  100% {
+    opacity: 0.5; } }
+
+@keyframes pulsate {
+  0% {
+    opacity: 0.5; }
+  50% {
+    opacity: 0.8; }
+  100% {
+    opacity: 0.5; } }
+
 .firstScreen {
   background: url("../img/first-bg.png") no-repeat top center;
   background-size: 100%;
@@ -1528,7 +1547,9 @@ section {
     .firstScreen__companyItem:first-child {
       padding-left: 0; }
       .firstScreen__companyItem:first-child img {
-        width: 4.3em; }
+        width: 4.3em;
+        -webkit-animation: pulsate 2s infinite;
+        animation: pulsate 2s infinite; }
       .firstScreen__companyItem:first-child .firstScreen__companyTooltips:before {
         left: 1.4em; }
     .firstScreen__companyItem:nth-child(2) img {
@@ -1559,7 +1580,9 @@ section {
     .firstScreen__companyItem:hover img {
       -webkit-filter: grayscale(0%);
       filter: grayscale(0%);
-      opacity: 1; }
+      opacity: 1;
+      -webkit-animation: none;
+      animation: none; }
   .firstScreen__companyTooltips {
     background-color: #ffffff;
     position: absolute;
@@ -2063,7 +2086,11 @@ section {
       margin-right: 0; }
   @media (max-width: 767px) {
     .dillers__map {
-      padding: 2em; } }
+      padding: 2em; }
+    .dillers__city {
+      width: 47%;
+      text-align: left;
+      margin-right: 0; } }
 
 .feature {
   background: url("../img/feature-bg.png") no-repeat center center;
@@ -2144,7 +2171,9 @@ section {
         columns: 1;
         padding-bottom: 2em;
         font-size: 1.3em;
-        margin-bottom: 1em; } }
+        margin-bottom: 1em; }
+      .feature__info {
+        margin-left: 1.6em; } }
 
 .countries {
   background: url("../img/countries-bg.png") no-repeat left -70em bottom;
@@ -2354,6 +2383,22 @@ section {
   .choice .icon {
     vertical-align: top; }
   @media (max-width: 767px) {
+    .choice__row {
+      padding-left: 0;
+      padding-right: 0; }
+      .choice__rowName {
+        -webkit-transform: rotate(0);
+        -ms-transform: rotate(0);
+        transform: rotate(0);
+        margin-top: 0;
+        position: static;
+        -webkit-writing-mode: lr-tb;
+        -ms-writing-mode: lr-tb;
+        writing-mode: lr-tb;
+        font-family: "Museo Sans Cyrl 700";
+        font-size: 2.3em;
+        margin-bottom: 1em;
+        margin-top: 2em; }
     .choice__grid > div {
       width: 100%;
       font-size: 1.3em; } }

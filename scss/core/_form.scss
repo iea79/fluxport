@@ -199,9 +199,13 @@ input[type=radio] {
 input[type=checkbox] {
 	border-radius: 3px;
 	margin-right: 5px;
+	&:checked {
+		background: url('../img/check.png') no-repeat center center;
+		background-size: 90%;
+	}
 	&:checked:before,
 	&:indeterminate:before {
-	    content: "\2714";
+	    content: "";
 	    font-size: 12px;
 	    -webkit-font-smoothing: antialiased;
 	    text-align: center;
