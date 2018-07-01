@@ -1492,7 +1492,7 @@ section {
   0% {
     opacity: 0.5; }
   50% {
-    opacity: 0.8; }
+    opacity: 1; }
   100% {
     opacity: 0.5; } }
 
@@ -1500,7 +1500,7 @@ section {
   0% {
     opacity: 0.5; }
   50% {
-    opacity: 0.8; }
+    opacity: 1; }
   100% {
     opacity: 0.5; } }
 
@@ -1547,13 +1547,13 @@ section {
     .firstScreen__companyItem:first-child {
       padding-left: 0; }
       .firstScreen__companyItem:first-child img {
-        width: 4.3em;
-        -webkit-animation: pulsate 2s infinite;
-        animation: pulsate 2s infinite; }
+        width: 4.3em; }
       .firstScreen__companyItem:first-child .firstScreen__companyTooltips:before {
         left: 1.4em; }
     .firstScreen__companyItem:nth-child(2) img {
-      width: 3.7em; }
+      width: 3.7em;
+      -webkit-animation: pulsate 1.7s infinite;
+      animation: pulsate 1.7s infinite; }
     .firstScreen__companyItem:nth-child(2) .firstScreen__companyTooltips:before {
       left: 2.8em; }
     .firstScreen__companyItem:nth-child(3) img {
@@ -1968,16 +1968,18 @@ section {
           font-size: 1.5em; }
       .stikers__table {
         white-space: nowrap;
-        overflow-x: auto;
         padding-left: 15em;
         padding-right: 15em;
-        background-size: auto 16%; }
+        background-size: auto 29%;
+        padding-top: 15em; }
         .stikers__tableTooltip {
           font-size: 1.3em;
           padding: 1em; }
-        .stikers__tableItem:last-child .stikers__tableTooltip {
-          left: 25%;
-          bottom: 16%; }
+        .stikers__tableItem:last-child {
+          display: none; }
+          .stikers__tableItem:last-child .stikers__tableTooltip {
+            left: 25%;
+            bottom: 16%; }
       .stikers__info {
         font-size: 1.4em; } }
 
@@ -2468,7 +2470,9 @@ section {
         float: none;
         width: auto;
         font-size: 1.3em;
-        margin-bottom: 2em; } }
+        margin-bottom: 2em; }
+      .adaptive__more {
+        font-size: 1.6em; } }
 
 .delivery {
   background: url("../img/delivery-bg.png") no-repeat center center;

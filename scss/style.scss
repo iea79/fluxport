@@ -90,7 +90,7 @@ section {
 		opacity: 0.5;
 	}
 	50% {
-		opacity: 0.8;
+		opacity: 1;
 	}
 	100% {
 		opacity: 0.5;
@@ -150,7 +150,6 @@ section {
 				padding-left: 0;
 				img {
 					width: 4.3em;
-					animation: pulsate 2s infinite;
 				}
 				.firstScreen__companyTooltips {
 					&:before {
@@ -161,6 +160,7 @@ section {
 			&:nth-child(2) {
 				img {
 					width: 3.7em;
+					animation: pulsate 1.7s infinite;
 				}
 				.firstScreen__companyTooltips {
 					&:before {
@@ -683,16 +683,20 @@ section {
 	    }
 	    &__table {
 	    	white-space: nowrap;
-	    	overflow-x: auto;
+	    	// overflow-x: auto;
 	    	padding-left: 15em;
 	    	padding-right: 15em;
-	    	background-size: auto 16%;
+	    	background-size: auto 29%;
+	    	// margin-top: 17em;
+	    	padding-top: 15em;
+	    	// height: 30em;
 	    	&Tooltip {
 				font-size: 1.3em;
 				padding: 1em;
 	    	}
 	    	&Item {
 	    		&:last-child {
+	    			display: none;
 	    			.stikers__tableTooltip {
 	    				left: 25%;
 	    				bottom: 16%;
@@ -1353,6 +1357,9 @@ section {
 	    	width: auto;
 	    	font-size: 1.3em;
 	    	margin-bottom: 2em;
+	    }
+	    &__more {
+	    	font-size: 1.6em;
 	    }
 	}
 }
