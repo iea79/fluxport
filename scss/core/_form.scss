@@ -1,4 +1,12 @@
 .form {
+	box-shadow: 0 0 3.063em rgba(45, 45, 45, 0.31);
+	border-radius: 0.625em;
+	padding: 3.9em 2.8em 0.6em;
+	border: 0.063em solid rgba(166, 166, 166, 0.28);
+	font-family: "Museo Sans Cyrl 500";
+	text-align: center;
+	color: #111212;
+	background-color: #fff;
 	@extend %clear_a;
 	&__row {
 		margin-bottom: 15px;
@@ -22,10 +30,65 @@
 			min-height: 15px;
 		}
 	}
+	&__legend {
+		font-family: "Gotham Pro";
+		font-size: 3em;
+		font-weight: 700;
+		letter-spacing: -0.001em;
+		margin-bottom: .1em;
+	}
+	&__sub {
+		font-size: 1.188em;
+		margin-bottom: 2.6em;
+	}
+	&__row {
+		margin-bottom: 1.8em;
+		position: relative;
+
+	}
 	&__label {
-		
+		font-size: 1.063em;
+		display: block;
+		margin-bottom: 0.5em;
+	}
+	&__input {
+	}
+	&__action {
+		margin-bottom: 2.2em;
+	}
+	&__privacy {
+		font-size: 0.8em;
+		a {
+			text-decoration: none;
+			color: #111212;
+			font-family: "Museo Sans Cyrl 700";
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+		&.invalid {
+			color: #fe4d4d;
+			a {
+				color: #fe4d4d;
+			}
+			input[checkbox] {
+				border-color: #fe4d4d;
+			}
+		}
+	}
+	.btn {}
+	.btn_form {}
+	@media (max-width: 767px) {
+	    font-size: 1.2em;
 	}
 }
+
+fieldset {
+	border: none;
+	padding: 0;
+	// margin: 0;
+}
+
 // Input text and textarea ================================================
 input:not([type]),
 input[type=text],
@@ -37,30 +100,39 @@ input[type=tel],
 input[type=number],
 input[type=datetime], 
 textarea {
-	background-color: $input_bg_color;
-	border: 1px solid $input_border_color;
-	padding: 6px 15px;
+	background-color: #e6e6e6;
+	border: 1px solid #e6e6e6;
+	padding: 1.7em 2em;
+	text-align: center;
 	outline: none;
-	font-size: 16px;
-	font-weight: 300;
-	font-family: $main_font_family;
-	border-radius: 5px;
+	color: #111212;
+	font-size: 1.1em;
+	font-weight: 400;
+	font-family: "Museo Sans Cyrl 300";
+	border-radius: 0.625em;
 	transition: all .3s;
 	&:hover {
-		border: 1px solid $input_hover_border_color;
-		background-color: $input_hover_bg_color;;
+		border: 1px solid #cecece;
+		background-color: #fff;
+		@include placeholder {
+			color: #111212;
+		}
 	}
 	&:focus {
-		border: 1px solid $input_focus_border_color;
-		background-color: $input_focus_bg_color;;
+		border: 1px solid #f5cd14;
+		background-color: #fff;
 	}
 	&.invalid {
-		background-color: #fff0f0;
-		border: 1px solid red;
+		background-color: #fff;
+		border: 1px solid #fe4d4d;
+		color: #fe4d4d;
+		@include placeholder {
+			color: #fe4d4d;
+		}
 	}
 	// Placeholder for input +++++++++++++++
 	@include placeholder {
-		color: $input_placeholder_color;
+		color: #666666;
 	}
 }
 
@@ -79,8 +151,8 @@ input[type=checkbox],
 input[type=radio] {
 	padding: 0;
     display: inline-block;
-    height: 14px;
-    width: 14px;
+    height: 12px;
+    width: 12px;
     border: 1px solid #aaa;
     overflow: hidden;
     margin-top: -4px;
@@ -125,6 +197,8 @@ input[type=radio] {
 }
 
 input[type=checkbox] {
+	border-radius: 3px;
+	margin-right: 5px;
 	&:checked:before,
 	&:indeterminate:before {
 	    content: "\2714";

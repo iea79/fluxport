@@ -16,27 +16,33 @@
     }
     &-close {
         position: absolute;
-        width: 21px;
-        height: 21px;
-        right: 23px;
-        top: 23px;
-        // background: image-url('close.svg') no-repeat center center;
-        &:before,&:after {
-            content: '';
-            position: absolute;
-            display: block;
-            width: 20px;
-            border-top: 1px solid $main_color;
-            top: 10px;
-        }
-        &:before {
-            transform: rotate(45deg);
-        }
-        &:after {
-            transform: rotate(-45deg);
-        }
+        width: 2.563em;
+        height: 2.625em;
+        right: -1em;
+        top: -1em;
+        background: url('../img/close.png') no-repeat center center;
+        background-size: 0.7em;
+        background-color: #ffeb8b;
+        cursor: pointer;
+        transition: all .3s;
+        border-radius: 50%;
+        // &:before,&:after {
+        //     content: '';
+        //     position: absolute;
+        //     display: block;
+        //     width: 20px;
+        //     border-top: 1px solid $main_color;
+        //     top: 10px;
+        // }
+        // &:before {
+        //     transform: rotate(45deg);
+        // }
+        // &:after {
+        //     transform: rotate(-45deg);
+        // }
         &:hover {
-            opacity: .8;
+            // opacity: .8;
+            background-color: #f5cd14;
         }
     }
     &.fade .modal-dialog {
@@ -50,20 +56,21 @@
     &-dialog {
         position: relative;
         width: auto;
-        margin: 10px auto;
-        max-width: 690px;
+        margin: 2em auto;
+        max-width: 37em;
+        &_lg {
+            max-width: 66em;
+        }
     }
 
     &-content {
         position: relative;
-        background-color: #fff;
-        border: 1px solid #999;
-        border: 1px solid rgba(0,0,0,.2);
-        border-radius: 6px;
-        box-shadow: 0 3px 9px rgba(0,0,0,.5);
+        box-shadow: 0 0 3.063em rgba(45, 45, 45, 0.08);
+        border-radius: 0.313em;
+        background-color: #ffffff;
         background-clip: padding-box;
         outline: 0;
-        padding: 46px 53px;
+        padding: 3.1em 3.1em;
     }
 
     &-backdrop {
@@ -123,7 +130,26 @@
             margin-left: 0;
         }
     }
-
+    .form {
+        box-shadow: none;
+        padding: 0;
+        border: none;
+        &__legend {
+            font-family: "Gotham Pro";
+            font-size: 2.5em;
+            font-weight: 700;
+            letter-spacing: -0.05em;
+            margin-bottom: 1em;
+        }
+        &__sub {
+            margin-bottom: 1.5em;
+        }
+    }
+    @media (max-width: 767px) {
+        &-dialog {
+            max-width: 90%;
+        }
+    }
 }
 
 

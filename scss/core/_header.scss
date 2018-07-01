@@ -1,19 +1,104 @@
 /* Header
  ----------------------------------------------------------------------------- */
 .header {
-	background-color: #ccc;
-	padding: 10px 0;
-	@extend %clear_a;
-	&__logo {
-		float: left;
-		width: 150px;
-	}
-}
-
-// stiky menu
-.stiky {
-	position: fixed;
+	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
+	z-index: 5;
+	.container_center {
+		padding-top: 1.45em;
+		padding-bottom: 1em;
+		position: relative;
+		@extend %clear_a;
+		&:before {
+			content: '';
+			display: block;
+			position: absolute;
+			left: 15px;
+			right: 15px;
+			bottom: 0;
+			border-top: 1px solid rgba(#fff, .5);
+		}
+	}
+	&__logo {
+		float: left;
+		width: 23em;
+	}
+	&__callback {
+		@extend %clear_a;
+		float: right;
+		padding-top: 1.5em;
+	}
+	&__phone {
+		background: url('../img/head-phone.png') no-repeat left center;
+		background-size: 1.7em 1.7em;
+		color: #ffffff;
+		font-family: "Gotham Pro";
+		font-size: 1.625em;
+		font-weight: 500;
+		padding: 0.5em 1.2em 0.5em 2.4em;
+		text-decoration: none;
+		vertical-align: middle;
+		letter-spacing: -0.01em;
+		&:hover {
+			color: #fff;
+			background-size: 1.8em 1.8em;
+		}
+	}
+	.btn {
+		background-color: transparent;
+		border: 1px solid rgba(#ffffff, .6);
+		border-radius: 1.73em;
+		font-family: "Museo Sans Cyrl 500";
+		font-size: 0.87em;
+		letter-spacing: .1em;
+		color: #ffffff;
+		padding: 1.2em 1.6em;
+		&:hover {
+			background-color: #b47870;
+			border-color: #b47870;
+			color: #fff;
+		}
+	}
+	@media (max-width: 767px) {
+    	&__logo {
+			width: 8em;
+			overflow: hidden;
+			img {
+				max-width: none;
+				width: 23em;
+			}
+		}
+		&__callback {
+			padding-top: 0em;
+			text-align: right;
+			float: none;
+			overflow: hidden;
+		}
+		&__phone {
+			font-size: 1.8em;
+			// display: block;
+			display: inline-block;
+			margin-bottom: 0.2em;
+			padding-right: 0;
+			&:hover {
+				color: #fff;
+				background-size: 1.8em 1.8em;
+			}
+		}
+		.btn {
+			padding: 0.8em 1.6em;
+			font-size: 1.2em;
+		}
+	}
 }
+
+
+// stiky menu
+// .stiky {
+// 	position: fixed;
+// 	top: 0;
+// 	left: 0;
+// 	width: 100%;
+// }

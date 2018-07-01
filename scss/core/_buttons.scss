@@ -13,7 +13,7 @@
 	text-align: center;
 	max-width: 100%;
 	cursor: pointer;
-	border-radius: 5px;
+	border-radius: 0.625em;
 	transition: all 0.3s;
 	text-decoration: none;
 	&:hover {
@@ -25,19 +25,69 @@
 		background-color: transparentize(#fff, .2);
 		color: #000;
 	}
-	@each $status_el, $color_bg in $el_colors {
-		&_#{$status_el} {
-			background-color: $color_bg;
-			border-color: $color_bg;
-			color: $btn_contrast_text_color;
-			&:hover {
-				background-color: darken($color_bg, 7%);
-				color: $btn_contrast_text_color;
-			}
-			&:focus,&:active {
-				background-color: darken($color_bg, 10%);
-				color: $btn_contrast_text_color;
+	// @each $status_el, $color_bg in $el_colors {
+	// 	&_#{$status_el} {
+	// 		background-color: $color_bg;
+	// 		border-color: $color_bg;
+	// 		color: $btn_contrast_text_color;
+	// 		&:hover {
+	// 			background-color: darken($color_bg, 7%);
+	// 			color: $btn_contrast_text_color;
+	// 		}
+	// 		&:focus,&:active {
+	// 			background-color: darken($color_bg, 10%);
+	// 			color: $btn_contrast_text_color;
+	// 		}
+	// 	}
+	// }
+	&_form {
+		text-shadow: 0 0.063em 0.063em #fff9da;
+		color: #3a382d;
+		font-family: "Gotham Pro Narrow";
+		font-size: 1.188em;
+		line-height: 1.3;
+		font-weight: 700;
+		letter-spacing: 0.024em;
+		padding: 0;
+		box-shadow: 0 0.438em 0.875em rgba(99, 90, 43, 0.43), 0 0.063em 0.063em rgba(73, 65, 26, 0.5);
+		background-image: linear-gradient(to top, #443d23 0%, #9a8b42 2%, #958632 6%, #ffffff 100%);
+		span {
+			border-radius: 0.625em;
+			display: block;
+			position: relative;
+			padding: 1.6em 2.4em;
+			top: -.05em;
+			background-image: linear-gradient(to bottom, #fff3aa 0%, #ffeb90 6%, #fbe57b 95%, #958631 100%);
+		}
+		&:hover {
+			color: #3a382d;
+			span {
+				background-image: linear-gradient(to bottom, #fff3aa 0%, #f8e072 6%, #f7d42c 95%, #958631 100%);
 			}
 		}
-	}	
+		&:active {
+			span {
+				top: 0;
+			}
+		}
+		&:focus,&:active {
+			color: #3a382d;
+			span {
+				background-image: linear-gradient(to bottom, #fff3aa 0%, #f8e072 6%, #f7d42c 95%, #958631 100%);
+			}
+		}
+		&:disabled {
+		    background-image: linear-gradient(to top, #443d23 0%, #9a8b42 2%, #958632 6%, #ffffff 100%);
+			filter: grayscale(100%);
+			cursor: default;
+			span {
+				top: -.05em;
+			}
+		}
+	}
+	&_double {
+		span {
+			padding: 0.8em 1.7em;
+		}
+	}
 }

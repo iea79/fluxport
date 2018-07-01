@@ -3,11 +3,99 @@
 .footer {
 	position: relative;
 	height: $footer_height;
-	background: #BFF08E;
 	@extend %clear_all;
 	.container_center {
-		padding-top: 10px;
-		padding-bottom: 10px;
+		padding-top: 3.4em;
+		padding-bottom: 3em;
+		border-top: 1px solid #e6e6e6;
+	}
+	&__left {
+		float: left;
+		width: 22em;
+		margin-right: 5em;
+		img {
+			height: auto;
+		}
+	}
+	&__logo {
+
+	}
+	&__center {
+		padding-top: 1em;
+		line-height: 1.5;
+		color: #a3a3a3;
+		font-family: "Gotham Pro";
+		font-weight: 300;
+	}
+	&__right {
+		float: right;
+		text-align: right;
+	}
+	&__policy {
+		font-family: "Gotham Pro";
+		font-weight: 300;
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		display: inline-block;
+	}
+	&__time {
+		text-decoration: none;
+		white-space: nowrap;
+		display: inline-block;
+		vertical-align: middle;
+		&Label {
+			vertical-align: middle;
+			color: #a3a3a3;
+			display: inline-block;
+		}
+		&Img {
+			display: inline-block;
+			vertical-align: middle;
+			img {
+				&:first-child {
+					display: block;
+				}
+				&:last-child {
+					display: none;
+				}
+			}
+		}
+		&:hover {
+			text-decoration: none;
+			.footer__timeImg {
+				img {
+					&:first-child {
+						display: none;
+					}
+					&:last-child {
+						display: block;
+					}
+				}
+			}
+		}
+	}
+	@media (max-width: 767px) {
+		font-size: 1.3em;
+		text-align: center;
+	    &__left {
+	    	width: auto;
+	    	float: none;
+	    	margin-bottom: 1em;
+	    	img {
+	    		width: 22em;
+	    	}
+	    }
+	    &__center {
+
+	    }
+	    &__right {
+	    	float: none;
+	    	width: auto;
+	    	text-align: center;
+	    }
+	    &__policy {
+	    	margin-bottom: 2em;
+	    }
 	}
 }
 

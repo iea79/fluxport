@@ -58,13 +58,13 @@ $(document).ready(function() {
 	});
 
 	// Scroll to ID // Плавный скролл к элементу при нажатии на ссылку. В ссылке указываем ID элемента
-	// $('#main__menu a[href^="#"]').click( function(){ 
-	// 	var scroll_el = $(this).attr('href'); 
-	// 	if ($(scroll_el).length != 0) {
-	// 	$('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 500);
-	// 	}
-	// 	return false;
-	// });
+	$('[data-scroll-to]').click( function(){ 
+		var scroll_el = $(this).attr('href'); 
+		if ($(scroll_el).length != 0) {
+		$('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 500);
+		}
+		return false;
+	});
 
 	// Stiky menu // Липкое меню. При прокрутке к элементу #header добавляется класс .stiky который и стилизуем
     // $(document).ready(function(){
@@ -80,10 +80,126 @@ $(document).ready(function() {
     // });
 
     // Inputmask.js
-    // $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
+    $('[name=tel]').inputmask("+9 999 99 999 99",{ showMaskOnHover: false });
 
-   	gridMatch();
+   	// gridMatch();
+
+    fontResize();
+    formSubmit();
+
+    $('.choice__slider').slick({
+        arrows: false,
+        dots: true
+    });
+
+    $('.faqs__toggler,.faqs__quest').on('click', function() {
+        var item = $(this).closest('.faqs__item');
+
+        if (item.hasClass('open')) {
+            item.removeClass('open');
+        } else {
+            $('.faqs__item').removeClass('open');
+            item.addClass('open');
+        }
+    });
+
+    mapsList();
+
+    firstScreenAnim();
+
+    // Выставляем опцию для определения положения по ip
+    ymaps.ready(function () {
+        ymaps.geolocation.get({
+            provider: 'yandex',
+        }).then(function (result) {
+            var thisCity = 0;
+            var currentLocate = result.geoObjects.get(0).properties._data.name;
+            $(".dillers__city").each(function() {
+                console.log($(this).text())
+                if ($(this).text() == currentLocate) {
+                    // console.log('thisCity = true')
+                    return false;
+                } else {
+                    thisCity++;
+                    // console.log(thisCity)
+
+                }
+            });
+            // console.log(result.geoObjects.get(0).properties._data.name);
+            if (thisCity >= 4) {
+                $(".dillers__city").last().text(currentLocate)
+            }
+        });
+    });
+
+    $('.product__slide').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true,
+        fade: true,
+        draggable: false,
+        asNavFor: '.product__thumbs'
+    });
+    $('.product__thumbs').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.product__slide',
+        centerMode: false,
+        focusOnSelect: true
+    });
+
+    $('.product').on('shown.bs.modal', function (e) {
+        $('.product__slide, .product__thumbs').resize();
+    });
+
+    $('.product__plus,.product__minus').on('click', function() {
+        var field = $(this).closest('.product__count').find('input');
+        var fieldVal = field.val();
+        var plus = $(this).hasClass('product__plus');
+        var minus = $(this).hasClass('product__minus');
+        var price = $(this).closest('.product__buy').find('.product__price');
+        var priceVal = price.data('price');
+
+        if (plus) {
+            fieldVal++;
+            field.val(fieldVal);
+            price.html(priceVal * fieldVal)
+        }
+        if (minus) {
+            if (fieldVal != 1) {
+                fieldVal--;
+                field.val(fieldVal)
+                price.html(priceVal * fieldVal)
+            } else {
+                return false;
+            }
+        }
+
+    });
+
 });
+
+function firstScreenAnim() {
+    if (!isXsWidth()) {
+        setTimeout(function() {
+            $('.firstScreen__imgFluxport').addClass('visible animated bounceInDown');
+        }, 100);
+        setTimeout(function() {
+            $('.firstScreen__imgIphone').addClass('visible animated bounceInDown');
+        }, 1500);
+        setTimeout(function() {
+            $('.firstScreen__rightTooltips').addClass('visible animated bounceInDown');
+        }, 2200);
+        setTimeout(function() {
+            $('.firstScreen__imgCharged').addClass('charged');
+        }, 3000);
+    } else {
+       $('.firstScreen__img,.firstScreen__rightTooltips').removeClass('hidden');
+       $('.firstScreen__imgCharged').addClass('charged');
+    }
+
+}
 
 $(window).resize(function(event) {
     var windowWidth = $(window).width();
@@ -95,7 +211,9 @@ $(window).resize(function(event) {
 });
 
 function checkOnResize() {
-   	gridMatch();
+   	// gridMatch();
+
+    fontResize();
 }
 
 function gridMatch() {
@@ -106,10 +224,10 @@ function gridMatch() {
 
 function fontResize() {
     var windowWidth = $(window).width();
-    if (windowWidth < 1440 && windowWidth >= 768) {
-    	var fontSize = windowWidth/19.05;
+    if (windowWidth < 1800 && windowWidth >= 768) {
+    	var fontSize = windowWidth/16.25;
     } else if (windowWidth < 768) {
-    	var fontSize = 50;
+    	var fontSize = 54;
     // } else if (windowWidth >= 1770) {
     // 	var fontSize = 100;
     }
@@ -191,71 +309,132 @@ $(function () {
 // })
 
 // Простая проверка форм на заполненность и отправка аяксом
-// function formSubmit() {
-//     $("[type=submit]").on('click', function (e){ 
-//         e.preventDefault();
-//         var form = $(this).closest('.form');
-//         var url = form.attr('action');
-//         var form_data = form.serialize();
-//         var field = form.find('[required]');
-//         // console.log(form_data);
+function formSubmit() {
+    $("[type=submit]").on('click', function (e){ 
+        e.preventDefault();
+        var form = $(this).closest('.form');
+        var url = 'send.php';
+        var form_data = form.serialize();
+        var field = form.find('[required]');
+        // console.log(form_data);
 
-//         empty = 0;
+        empty = 0;
 
-//         field.each(function() {
-//             if ($(this).val() == "") {
-//                 $(this).addClass('invalid');
-//                 // return false;
-//                 empty++;
-//             } else {
-//                 $(this).removeClass('invalid');
-//                 $(this).addClass('valid');
-//             }  
-//         });
+        field.each(function() {
+            if ($(this).val() == "") {
+                $(this).addClass('invalid');
+                // return false;
+                empty++;
+            } else {
+                $(this).removeClass('invalid');
+                $(this).addClass('valid');
+            }  
+        });
 
-//         // console.log(empty);
+        // console.log(empty);
 
-//         if (empty > 0) {
-//             return false;
-//         } else {        
-//             $.ajax({
-//                 url: url,
-//                 type: "POST",
-//                 dataType: "html",
-//                 data: form_data,
-//                 success: function (response) {
-//                     // $('#success').modal('show');
-//                     // console.log('success');
-//                     console.log(response);
-//                     // console.log(data);
-//                     // document.location.href = "success.html";
-//                 },
-//                 error: function (response) {
-//                     // $('#success').modal('show');
-//                     // console.log('error');
-//                     console.log(response);
-//                 }
-//             });
-//         }
+        if (empty > 0) {
+            return false;
+        } else {        
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "html",
+                data: form_data,
+                success: function (response) {
+                    // $('#success').modal('show');
+                    // console.log('success');
+                    // console.log(response);
+                    // console.log(data);
+                    if (form.attr('id') == 'calculate') {
+                        document.location.href = "success.html";
+                    } else {
+                        document.location.href = "success.html";
+                    }
+                },
+                error: function (response) {
+                    // $('#success').modal('show');
+                    // console.log('error');
+                    // console.log(response);
+                }
+            });
+        }
 
-//     });
+    });
 
-//     $('[required]').on('blur', function() {
-//         if ($(this).val() != '') {
-//             $(this).removeClass('invalid');
-//         }
-//     });
+    $('[required]').on('blur', function() {
+        if ($(this).val() != '') {
+            $(this).removeClass('invalid');
+        }
+    });
 
-//     $('.form__privacy input').on('change', function(event) {
-//         event.preventDefault();
-//         var btn = $(this).closest('.form').find('.btn');
-//         if ($(this).prop('checked')) {
-//             btn.removeAttr('disabled');
-//             // console.log('checked');
-//         } else {
-//             btn.attr('disabled', true);
-//         }
-//     });
-// }
+    $('.form__privacy input').on('change', function(event) {
+        event.preventDefault();
+        var btn = $(this).closest('.form').find('.btn');
+        if ($(this).prop('checked')) {
+            btn.removeAttr('disabled');
+            $(this).closest('.form__privacy').removeClass('invalid');
+            // console.log('checked');
+        } else {
+            btn.attr('disabled', true);
+            $(this).closest('.form__privacy').addClass('invalid');
+        }
+    });
+}
 
+ymaps.ready(function () {
+    var myMap = new ymaps.Map('map-wrap', {
+            center: [59.90367006420742,30.300668499999983],
+            zoom: 17,
+            controls: []
+        }, {
+            searchControlProvider: 'yandex#search'
+        }),
 
+        // Создаём макет содержимого.
+        MyIconContentLayout = ymaps.templateLayoutFactory.createClass(
+            '<div style="color: #FFFFFF; font-weight: bold;">$[properties.iconContent]</div>'
+        ),
+
+        myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
+            hintContent: 'Flux Port',
+            balloonContent: '<b>Flux Port</b><br />Беспроводные зарядные устройства из Германии для бизнеса и дома'
+        }, {
+            // Опции.
+            // Необходимо указать данный тип макета.
+            iconLayout: 'default#imageWithContent',
+            // Своё изображение иконки метки.
+            iconImageHref: 'img/map-marker.png',
+            // Размеры метки.
+            iconImageSize: [107, 147],
+            // Смещение левого верхнего угла иконки относительно
+            // её "ножки" (точки привязки).
+            iconImageOffset: [-50, -147]
+        });
+
+    myMap.geoObjects
+        .add(myPlacemark);
+
+    myMap.behaviors.disable('scrollZoom');
+});
+
+function mapsList() {
+    ymaps.ready(function () {
+        $('.office__listMap').each(function(index) {
+            var coord = $(this).data('coord');
+            var id = $(this).attr('id');
+            var map = 'myMap' + index;
+            // console.log(coord);
+            var map = new ymaps.Map(id, {
+                    center: coord,
+                    zoom: 14,
+                    controls: []
+                }, {
+                    searchControlProvider: 'yandex#search'
+                });
+
+            // map.container.fitToViewport();
+            map.behaviors.disable('scrollZoom');
+        });
+    });
+}
