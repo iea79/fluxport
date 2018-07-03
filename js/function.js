@@ -132,25 +132,14 @@ $(document).ready(function() {
         });
     });
 
-    $('.product__slide').slick({
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        arrows: false,
-        dots: true,
-        fade: true,
-        draggable: false,
-        asNavFor: '.product__thumbs'
-    });
-    $('.product__thumbs').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        asNavFor: '.product__slide',
-        centerMode: false,
-        focusOnSelect: true
-    });
-
-    $('.product').on('shown.bs.modal', function (e) {
-        $('.product__slide, .product__thumbs').resize();
+    $('[data-product-modal]').on('click', function() {
+        var modal = $(this).closest('.choice__gridItem').next('.modal');
+        var modalId = modal.attr('id');
+        var slider1 = modal.find('.product__slide');
+        var slider2 = modal.find('.product__thumbs');
+        $('#'+modalId+'').modal('show');
+        productSliders(slider1, slider2);
+        
     });
 
     $('.product__plus,.product__minus').on('click', function() {
@@ -178,7 +167,33 @@ $(document).ready(function() {
 
     });
 
+    $('.firstScreen__companyItem:nth-child(2)').addClass('anim');
+    $('.firstScreen__companyItem').on('mouseenter', function() {
+        $('.firstScreen__companyItem:nth-child(2)').removeClass('anim');
+    });
+
 });
+
+function productSliders(slide1, slide2) {    
+    slide1.slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        dots: true,
+        fade: true,
+        draggable: false,
+        asNavFor: slide2
+    });
+    slide2.slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: slide1,
+        arrows: false,
+        centerMode: false,
+        focusOnSelect: true
+    });
+}
+
 
 function firstScreenAnim() {
     if (!isXsWidth()) {
@@ -347,7 +362,7 @@ function formSubmit() {
                     // console.log(response);
                     // console.log(data);
                     if (form.attr('id') == 'calculate') {
-                        document.location.href = "success.html";
+                        document.location.href = "files/Презентация.pdf";
                     } else {
                         document.location.href = "success.html";
                     }

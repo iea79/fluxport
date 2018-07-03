@@ -1490,22 +1490,34 @@ section {
 
 @-webkit-keyframes pulsate {
   0% {
-    opacity: 0.5; }
+    opacity: 0.5;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); }
   50% {
-    opacity: 1; }
+    opacity: 1;
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%); }
   100% {
-    opacity: 0.5; } }
+    opacity: 0.5;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); } }
 
 @keyframes pulsate {
   0% {
-    opacity: 0.5; }
+    opacity: 0.5;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); }
   50% {
-    opacity: 1; }
+    opacity: 1;
+    -webkit-filter: grayscale(0%);
+    filter: grayscale(0%); }
   100% {
-    opacity: 0.5; } }
+    opacity: 0.5;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%); } }
 
 .firstScreen {
-  background: url("../img/first-bg.png") no-repeat top center;
+  background: url("../img/first-bg.jpg") no-repeat top center;
   background-size: 100%;
   padding-top: 12.25em;
   padding-bottom: 4em; }
@@ -1543,7 +1555,16 @@ section {
     display: inline-block;
     vertical-align: middle;
     position: relative;
-    padding: 1em 1.55em; }
+    padding: 1em 1.55em;
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+    opacity: 0.5;
+    -webkit-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s; }
+    .firstScreen__companyItem.anim {
+      -webkit-animation: pulsate 2s infinite;
+      animation: pulsate 2s infinite; }
     .firstScreen__companyItem:first-child {
       padding-left: 0; }
       .firstScreen__companyItem:first-child img {
@@ -1551,9 +1572,7 @@ section {
       .firstScreen__companyItem:first-child .firstScreen__companyTooltips:before {
         left: 1.4em; }
     .firstScreen__companyItem:nth-child(2) img {
-      width: 3.7em;
-      -webkit-animation: pulsate 1.7s infinite;
-      animation: pulsate 1.7s infinite; }
+      width: 3.7em; }
     .firstScreen__companyItem:nth-child(2) .firstScreen__companyTooltips:before {
       left: 2.8em; }
     .firstScreen__companyItem:nth-child(3) img {
@@ -1568,21 +1587,12 @@ section {
       width: 9.6em; }
     .firstScreen__companyItem:nth-child(5) .firstScreen__companyTooltips:before {
       left: 4.9em; }
-    .firstScreen__companyItem img {
-      opacity: 0.5;
-      -webkit-transition: all .3s;
-      -o-transition: all .3s;
-      transition: all .3s;
-      -webkit-filter: grayscale(100%);
-      filter: grayscale(100%); }
-    .firstScreen__companyItem:hover .firstScreen__companyTooltips {
-      display: block; }
-    .firstScreen__companyItem:hover img {
+    .firstScreen__companyItem:hover {
       -webkit-filter: grayscale(0%);
       filter: grayscale(0%);
-      opacity: 1;
-      -webkit-animation: none;
-      animation: none; }
+      opacity: 1; }
+      .firstScreen__companyItem:hover .firstScreen__companyTooltips {
+        display: block; }
   .firstScreen__companyTooltips {
     background-color: #ffffff;
     position: absolute;
@@ -2437,6 +2447,9 @@ section {
       background-image: url("../img/phone.png"); }
     .icon__soc_whatsapp {
       background-image: url("../img/whatsapp.png"); }
+    @media (max-width: 767px) {
+      .icon__soc {
+        background-position: bottom center; } }
 
 .adaptive {
   padding-bottom: 10em; }
@@ -2451,7 +2464,13 @@ section {
     margin-right: 5.9%; }
   .adaptive__more {
     font-family: "Museo Sans Cyrl 500";
-    font-size: 1.1em; }
+    font-size: 1.1em;
+    display: inline-block;
+    text-decoration: none; }
+    .adaptive__more:after {
+      content: '';
+      display: block;
+      border-bottom: 2px dotted; }
   .adaptive__right {
     overflow: hidden; }
   .adaptive__grid {
@@ -2827,7 +2846,13 @@ section {
     text-decoration: none; }
 
 .office__calback {
-  font-family: "Museo Sans Cyrl 500"; }
+  font-family: "Museo Sans Cyrl 500";
+  display: inline-block;
+  text-decoration: none; }
+  .office__calback:after {
+    content: '';
+    display: block;
+    border: 1px dotted; }
 
 .office .icon {
   margin-right: 0.5em; }
@@ -2854,6 +2879,7 @@ section {
     overflow: hidden; }
   .office__listPlate {
     position: absolute;
+    max-width: 61%;
     top: 1.2em;
     right: 0;
     font-size: 1.1em;
@@ -2862,7 +2888,7 @@ section {
     box-shadow: 0 0 2.063em 0.5em rgba(0, 0, 0, 0.05);
     border-radius: 0.25em;
     background-color: #ffffff;
-    padding: 1.9em 3.9em 0.9em; }
+    padding: 1.9em 3.1em 0.9em; }
   .office__listRow {
     margin-bottom: 0.5em; }
     .office__listRow a {

@@ -88,17 +88,20 @@ section {
 @keyframes pulsate {
 	0% {
 		opacity: 0.5;
+		filter: grayscale(100%);
 	}
 	50% {
 		opacity: 1;
+		filter: grayscale(0%);
 	}
 	100% {
 		opacity: 0.5;
+		filter: grayscale(100%);
 	}
 }
 
 .firstScreen {
-	background: url('../img/first-bg.png') no-repeat top center;
+	background: url('../img/first-bg.jpg') no-repeat top center;
 	background-size: 100%;
 	padding-top: 12.25em;
 	padding-bottom: 4em;
@@ -146,6 +149,12 @@ section {
 			vertical-align: middle;
 			position: relative;
 			padding: 1em 1.55em;
+			filter: grayscale(100%);
+			opacity: 0.5;
+			transition: all .3s;
+			&.anim {
+				animation: pulsate 2s infinite;
+			}
 			&:first-child {
 				padding-left: 0;
 				img {
@@ -160,7 +169,6 @@ section {
 			&:nth-child(2) {
 				img {
 					width: 3.7em;
-					animation: pulsate 1.7s infinite;
 				}
 				.firstScreen__companyTooltips {
 					&:before {
@@ -199,18 +207,16 @@ section {
 				}
 			}
 			img {
-				opacity: 0.5;
-				transition: all .3s;
-				filter: grayscale(100%)
+				
 			}
 			&:hover {
+				filter: grayscale(0%);
+				opacity: 1;
 				.firstScreen__companyTooltips {
 					display: block;
 				}
 				img {
-					filter: grayscale(0%);
-					opacity: 1;
-					animation: none;
+					// animation: none;
 				}
 			}
 		}
@@ -1311,6 +1317,9 @@ section {
 			background-image: url('../img/whatsapp.png');
 
 		}
+		@media (max-width: 767px) {
+		    background-position: bottom center;
+		}
 	}
 }
 
@@ -1332,6 +1341,14 @@ section {
 	&__more {
 		font-family: "Museo Sans Cyrl 500";
 		font-size: 1.1em;
+    	display: inline-block;
+    	// line-height: 1.4;
+    	text-decoration: none;
+    	&:after {
+    		content: '';
+    		display: block;
+    		border-bottom: 2px dotted;
+    	}
 	}
 	&__right {
 		overflow: hidden;
@@ -1801,6 +1818,13 @@ section {
 	}
 	&__calback {
 		font-family: "Museo Sans Cyrl 500";
+		display: inline-block;
+		text-decoration: none;
+		&:after {
+			content: '';
+			display: block;
+			border: 1px dotted;
+		}
 	}
 	.icon {
 		margin-right: 0.5em;
@@ -1844,6 +1868,7 @@ section {
 		}
 		&Plate {
 			position: absolute;
+			max-width: 61%;
 			top: 1.2em;
 			right: 0;
 			// float: right;
@@ -1852,7 +1877,7 @@ section {
 			box-shadow: 0 0 2.063em 0.5em rgba(0, 0, 0, 0.05);
 			border-radius: 0.25em;
 			background-color: #ffffff;
-			padding: 1.9em 3.9em 0.9em;
+			padding: 1.9em 3.1em 0.9em;
 		}
 		&Row {
 			margin-bottom: 0.5em;
